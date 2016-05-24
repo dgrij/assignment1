@@ -12,24 +12,26 @@ using std::strcpy;
 
 Line::Line() //: linePtr{ new char[1]{ '\0' } }
 {
-    linePtr  = new char[1];
-    linePtr[0] = '\0';
-	lineLenght=strlen(linePtr);
-	//cout<<lineLenght<<endl;
+    lineCapacity = 100;
+	linePtr  = new char[lineCapacity];
+    linePtr[lineCapacity-1] = '\0';
+	lineLength=strlen(linePtr);
+	
+	//cout<<lineLength<<endl;
     cout << "default Line ctor" << endl;
 
 }
 
 Line::Line(char* someLine){
 
-	lineLenght = strlen(someLine);
+	lineLength = strlen(someLine);
 	
-	cout<<lineLenght<<endl;
+	//cout<<lineLength<<endl;
 	
-	linePtr = new char[lineLenght+1];
+	linePtr = new char[lineLength+1];
 
 	
-	//linePtr[lineLenght+1] = '\0';
+	//linePtr[lineLength+1] = '\0';
 
 	strcpy (linePtr,someLine);
 	
@@ -63,7 +65,7 @@ Line::Line(const Line& thatLine)
     
 	cout << "Line copy ctor" << endl;
     linePtr = new char[strlen(thatLine.linePtr) + 1];
-    lineLenght = thatLine.lineLenght;
+    lineLength = thatLine.lineLength;
 	strcpy(linePtr, thatLine.linePtr);
 }
 
@@ -73,7 +75,8 @@ Line::Line(const Line& thatLine)
 ostream& operator<<(ostream& out, const Line& thatLine)
 {
     out << thatLine.linePtr;
-    return out;
+    
+	return out;
 }
 
 
@@ -89,6 +92,45 @@ const Line& Line::operator =(const Line & thatLine)
     }
     return *this;
 }
+
+
+bool Line::empty(){
+
+	cout<<this->linePtr<<endl;
+	cout<<this->linePtr[0]<<endl;
+
+	if (this->linePtr[0] == '\0'){
+	
+		//cout<<"INSIDE TRUE"<<endl;
+
+		return true;
+		
+	}
+
+	//cout<<"OUTSIDE FALSE"<<endl;
+	
+	else return false;
+	
+}
+
+const int Line::capacity(){
+
+	this->lineCapacity;
+
+
+
+	int myCapacity;
+
+	myCapacity = strlen(this->linePtr);
+
+
+	cout <<"myCapacity: ["<<myCapacity<<"]"<< endl;	
+	
+	return myCapacity;
+	 
+
+}
+
 
 
 

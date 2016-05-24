@@ -9,23 +9,29 @@ int main()
    
 	{
 	
+	
+
 	Line line ("Dmitri");
 	line.print();
+	line.empty();
+	line.capacity();
 
 	Line dmitriCopy(line);
 	dmitriCopy.print();
-		
+	dmitriCopy.empty();
+
 	Line empty;
 	empty.print();
-	
-	cout<<line<<endl;
+	empty.empty();
+	empty.capacity();
+	cout<<(empty.empty())<<endl;
 
 	
 	//empty.print();
 	
 	Line anotherLine;
 
-	anotherLine = dmitriCopy;
+	anotherLine = empty;
 
 	cout<<anotherLine<<endl;
 

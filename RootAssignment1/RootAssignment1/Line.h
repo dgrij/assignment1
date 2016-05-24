@@ -11,8 +11,13 @@ class Line
 private:
 	
 	char* linePtr;// { nullptr };                    // pointer to dynamic memory
-	int lineLenght;
+
+	int lineLength;
+	
 	int lineCapacity;
+		
+	int availableIndex;
+
 
 
 public:
@@ -33,16 +38,20 @@ public:
 
 	const Line& operator=(const Line&);			// assignment operator overload
 	
+		
+	bool empty();
+
+	const int capacity ();
+
 
 	//const int cstr();
 
 	//int length();
 
-	//bool empty();
 
 	//bool full();
 
-	//const int capacity ();
+	
 
 	//void resize ();
 
@@ -54,10 +63,9 @@ public:
    
 	
 	
-	//const Line& operator>>(const Line&);		// assignment operator overload
+	
 	    
-	//friend ostream& operator<<(ostream& output, const Line& thatLine);
-
+	
     // we did not write this member function in class
    
 };
