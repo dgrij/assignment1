@@ -10,38 +10,86 @@ using std::cout;
 using std::endl;
 using std::strcpy;
 
-Line::Line() //: linePtr{ new char[1]{ '\0' } }
+
+Line::Line() : minimumCapacity(100), maximumCapacity(1000) //: linePtr{ new char[1]{ '\0' } }
 {
-    lineCapacity = 100;
-	linePtr  = new char[lineCapacity];
-    linePtr[lineCapacity-1] = '\0';
-	lineLength=strlen(linePtr);
+    //minimumCapacity = 100;
 	
-	//cout<<lineLength<<endl;
-    cout << "default Line ctor" << endl;
+	linePtr  = new char[minimumCapacity];
+	
+    linePtr[0] = '\0';
+
+	currentCapacity=strlen(linePtr);
+	
+	cout<<currentCapacity<<endl;
+
+	//cout<<currentCapacity<<endl;
+    cout << "default empty Line ctor" << endl;
 
 }
 
-Line::Line(char* someLine){
+Line::Line(char* someLine) : minimumCapacity(100), maximumCapacity(1000){
 
-	lineLength = strlen(someLine);
+	//minimumCapacity = 100;
+
+	cout<<"Line char* constructor: "<<endl;
+
+	currentCapacity = strlen(someLine);
 	
-	//cout<<lineLength<<endl;
-	
-	linePtr = new char[lineLength+1];
+	//minimumCapacity =  minimumCapacity - (currentCapacity+1);
+
+	linePtr = new char[currentCapacity+1];
 
 	
-	//linePtr[lineLength+1] = '\0';
+	linePtr[currentCapacity] = '\0';
 
+	availableIndex = strlen(someLine)+1;
+	
 	strcpy (linePtr,someLine);
 	
+
+
 }
+
+Line::Line(char someChar):minimumCapacity(100), maximumCapacity(1000)
+{
+
+	cout<<"Line simple char constructor: "<<endl;
+	
+	linePtr = new char[minimumCapacity];
+	
+	linePtr[0] = someChar;
+
+	linePtr[1] = '\0';
+
+	currentCapacity = minimumCapacity;
+
+	availableIndex = 1;
+
+	//minimumCapacity =  minimumCapacity - (currentCapacity+1);
+
+	//linePtr = new char(); // someChar = new char;
+
+//	linePtr = a;
+	
+	//linePtr = someChar;
+
+	
+	//linePtr[currentCapacity+1] = '\0';
+
+	
+	
+}
+
+
 
 // we did not write this member function in class
 
 void Line::print() const // const means that print cannot modify *this
 {
-   
+	
+	cout<<"Line print method: "<<endl;
+
 	cout << linePtr << endl; // showing off using our own operator<< overload
     //cout << this->linePtr << endl; // same as above
 	// cout << (*this).linePtr << endl; // same as above
@@ -55,17 +103,20 @@ void Line::print() const // const means that print cannot modify *this
 
 Line::~Line()
 {
-    //cout << "Line dtor" << endl;
+	
+    std::cerr << "Line dtor: " << endl;
+	std::cerr<<linePtr<<std::endl;
     delete[] linePtr;
     linePtr = nullptr;   // defensive programming
 }
 
-Line::Line(const Line& thatLine)
+Line::Line(const Line& thatLine):minimumCapacity(100), maximumCapacity(1000)
 {
     
-	cout << "Line copy ctor" << endl;
-    linePtr = new char[strlen(thatLine.linePtr) + 1];
-    lineLength = thatLine.lineLength;
+	cout << "Line copy ctor: " << endl;
+
+    linePtr = new char[strlen(thatLine.linePtr)+1];
+    currentCapacity = thatLine.currentCapacity;
 	strcpy(linePtr, thatLine.linePtr);
 }
 
@@ -80,15 +131,40 @@ ostream& operator<<(ostream& out, const Line& thatLine)
 }
 
 
+istream& operator>>(istream& in, Line& thatLine)
+{
+    delete[] thatLine.linePtr;
+	
+	thatLine.linePtr = new char[1000];
+
+	in >> thatLine.linePtr;
+
+	thatLine.availableIndex = strlen(thatLine.linePtr);
+
+	thatLine.currentCapacity = 1000;
+	   
+	return in;
+}
+
+
+
+
 const Line& Line::operator =(const Line & thatLine)
 {
     cout << "assignment operator overload (copy assignment)" << endl;
     if (this == &thatLine) return *this; // do nothing on self-assignment
     {
         delete[] linePtr; // release dynamic storage currently used by the LHS operator
-        linePtr = new char[strlen(thatLine.linePtr) + 1]; // allocate new storage of proper size
-        strcpy(linePtr, thatLine.linePtr);   // copy
-                                    //strcpy(this->linePtr, m.linePtr); // same as above
+        
+		linePtr = new char[strlen(thatLine.linePtr) + 1]; // allocate new storage of proper size
+        
+		strcpy(linePtr, thatLine.linePtr);   // copy
+        
+		this->currentCapacity=thatLine.currentCapacity;
+
+		this->availableIndex=thatLine.availableIndex;
+		
+		//strcpy(this->linePtr, m.linePtr); // same as above
     }
     return *this;
 }
@@ -96,40 +172,126 @@ const Line& Line::operator =(const Line & thatLine)
 
 bool Line::empty(){
 
-	cout<<this->linePtr<<endl;
-	cout<<this->linePtr[0]<<endl;
+	cout<<"Line empty method: "<<endl;
 
 	if (this->linePtr[0] == '\0'){
 	
-		//cout<<"INSIDE TRUE"<<endl;
+		cout<<"This is an empty line"<<endl;
 
 		return true;
 		
 	}
 
-	//cout<<"OUTSIDE FALSE"<<endl;
+	cout<<"This line is not empty, size: "<<this->currentCapacity<<endl;
 	
-	else return false;
+	return false;
 	
 }
+
+
+void Line::push_back (const char& someChar){
+
+	
+	linePtr[availableIndex++] = someChar;
+	
+	linePtr[availableIndex] = '\0';
+
+	cout << "push back" << endl;
+
+}
+
+
+void Line::resize (){
+
+	cout<<currentCapacity<<endl;
+
+
+	char* tempPtr = new char[2 * currentCapacity];
+	
+	cout<<availableIndex<<endl;
+
+	
+
+
+
+	for (int i = 0; i < this->availableIndex;i++ ) {
+	
+	tempPtr[i] = linePtr[i];
+	
+	
+
+	}
+
+	tempPtr[availableIndex]='\0';
+
+	delete[] linePtr;
+	linePtr = nullptr;
+	
+	linePtr = tempPtr;
+
+	cout << "resize" << endl;
+
+}
+
+
+
+
+void Line::pop_back (){
+
+	if (availableIndex == 0) { 
+		
+	cout<<"cant pop any more you piece of shit"<<endl;
+
+	return;
+	
+	}
+
+	else {
+	
+	linePtr[--availableIndex]='\0';
+
+	cout << "pop back" << endl;
+	}
+}
+
+
+
+
+bool Line::full(){
+
+	cout<<"Line full method: "<<endl;
+
+	if (this->linePtr[99] == '\0'){
+	
+		cout<<"This is a full line, size"<<this->currentCapacity<<endl;
+
+		return true;
+		
+	}
+
+	cout<<"This line is not full, size: "<<this->currentCapacity<<endl;
+	
+	return false;
+
+
+
+	return false;
+
+}
+
+
+
 
 const int Line::capacity(){
 
-	this->lineCapacity;
-
-
-
-	int myCapacity;
-
-	myCapacity = strlen(this->linePtr);
-
-
-	cout <<"myCapacity: ["<<myCapacity<<"]"<< endl;	
+	cout<<"Line capacity method, capacity: "<<(this->currentCapacity)<<endl;
 	
-	return myCapacity;
+	return this->currentCapacity;
 	 
 
 }
+
+
 
 
 
@@ -175,25 +337,6 @@ int length(){
 	return 1;
 }
 
-bool empty(){
-
-	
-	if ( (this*) != NULL && this[0] == '\0' ) {
-    
-		return true;// empty
-	}
-	
-	else return false;
-	
-
-	return true;
-}
-
-bool full(){
-
-	return false;
-
-}
 
 const int capacity(){
 
@@ -203,23 +346,10 @@ const int capacity(){
 
 }
 
-void resize (){
 
-	 cout << "resize" << endl;
 
-}
 
-void push_back (const char& someChar){
 
-	 cout << "push back" << endl;
-
-}
-
-void pop_back (){
-
-	cout << "pop back" << endl;
-
-}
 
 
 */

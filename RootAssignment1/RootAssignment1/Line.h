@@ -5,6 +5,7 @@
 //#include <cstring>
 
 using std::ostream;
+using std::istream;
 
 class Line
 {
@@ -12,21 +13,27 @@ private:
 	
 	char* linePtr;// { nullptr };                    // pointer to dynamic memory
 
-	int lineLength;
+	int currentCapacity;
 	
-	int lineCapacity;
+	const int minimumCapacity;
 		
+	const int maximumCapacity;
+
 	int availableIndex;
+
+	
 
 
 
 public:
 
-    Line();									// default constructor
+    void resize ();
+	
+	Line();									// default constructor
 	
 	Line(char*);							// a constructor overload
 	
-    //Line(char);								// constructor with one char
+    Line(char);								// constructor with one char
 	
     Line(const Line&);						// copy constructor
 
@@ -36,28 +43,35 @@ public:
 
 	friend ostream& operator<<(ostream& out, const Line& thatLine);		// assignment operator overload
 
+	friend istream& operator>>(istream& in, Line& thatLine);
+
 	const Line& operator=(const Line&);			// assignment operator overload
 	
 		
 	bool empty();
 
+	bool full();
+
 	const int capacity ();
 
+	void push_back (const char& someChar);
+
+	
+	void pop_back ();
 
 	//const int cstr();
 
 	//int length();
 
 
-	//bool full();
+	
 
 	
 
-	//void resize ();
+	
 
-	//void push_back (const char& someChar);
+	
 
-	//void pop_back ();
 	
 	
    

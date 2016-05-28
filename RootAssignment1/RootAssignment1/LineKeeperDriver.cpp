@@ -9,34 +9,32 @@ int main()
    
 	{
 	
-	
-
-	Line line ("Dmitri");
+	Line line ("This is a l");
 	line.print();
 	line.empty();
 	line.capacity();
 
-	Line dmitriCopy(line);
-	dmitriCopy.print();
-	dmitriCopy.empty();
+	Line huevito("Huevito");
 
-	Line empty;
-	empty.print();
-	empty.empty();
-	empty.capacity();
-	cout<<(empty.empty())<<endl;
+	huevito.print();
+	Line otroHuevito;
+	otroHuevito=huevito;
 
-	
-	//empty.print();
-	
-	Line anotherLine;
-
-	anotherLine = empty;
-
-	cout<<anotherLine<<endl;
+	otroHuevito.print();
 
 
+	//Line charLine('a');
+	//charLine.print();
+	//charLine.resize();
+	//charLine.capacity();
 
+	Line cinLine("Gleb");
+
+	cinLine.print();
+
+	cin>>cinLine;
+
+	cinLine.print();
 	}
 	
 	
