@@ -64,10 +64,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Line.cpp" />
+    <ClCompile Include="LineKeeper.cpp" />
     <ClCompile Include="LineKeeperDriver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Line.h" />
+    <ClInclude Include="LineKeeper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,15 +1,16 @@
 //#pragma once          // same as  include guards below, but non-standard
 #ifndef LINEKEEPER_H
 #define LINEKEEPER_H
+//#include "LinkedList.h"
+#include "Line.h"
 #include <iostream>     // for ostream
-
+#include <fstream>
 using std::ostream;
 
-class LineKeeper
+class LineKeeper //to add for linked list ->: public LinkedList<Line>
 {
 private:
-	
-	LinkedList::LinkedList& List;                    
+	 
 	int lineLenght;
 	int lineCapacity;
 

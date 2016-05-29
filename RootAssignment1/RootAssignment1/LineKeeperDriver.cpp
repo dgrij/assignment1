@@ -2,6 +2,7 @@
 //#include "LineKeeper.h"   // for LineKeeper class
 #include "Line.h"
 #include"string.h"
+#include "linekeeper.h"
 using namespace std;   // safe to use this using-directive here
 
 int main()
@@ -9,6 +10,13 @@ int main()
    
 	{
 	
+	LineKeeper linekeeper ("text.txt");
+
+		
+		
+
+
+		/*
 	Line line ("This is a l");
 	line.print();
 	line.empty();
@@ -17,6 +25,32 @@ int main()
 	Line huevito("Huevito");
 
 	huevito.print();
+	huevito.capacity();
+
+	for (int i=0; i <1000; i++){
+	huevito.push_back('a');
+	}
+	huevito.print();
+	huevito.capacity();
+	
+
+	for (int i=0; i <1500; i++){
+	huevito.pop_back();
+	}
+	huevito.print();
+	huevito.capacity();
+	
+
+
+	for (int i=0; i <1000; i++){
+	huevito.push_back('a');
+	}
+	huevito.print();
+	huevito.capacity();
+	
+
+
+
 	Line otroHuevito;
 	otroHuevito=huevito;
 
@@ -35,9 +69,13 @@ int main()
 	cin>>cinLine;
 
 	cinLine.print();
+	
+	*/
+
 	}
-	
-	
+
+
+
 	while (true){	}
 	
 	

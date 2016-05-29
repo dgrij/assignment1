@@ -15,9 +15,9 @@ private:
 
 	int currentCapacity;
 	
-	const int minimumCapacity;
+	const int MINIMUM_CAPACITY;
 		
-	const int maximumCapacity;
+	const int MAXIMUM_CAPACITY;
 
 	int availableIndex;
 
@@ -27,13 +27,15 @@ private:
 
 public:
 
-    void resize ();
+    void resize (int);
 	
 	Line();									// default constructor
 	
 	Line(char*);							// a constructor overload
 	
     Line(char);								// constructor with one char
+
+	char* cstr();
 	
     Line(const Line&);						// copy constructor
 

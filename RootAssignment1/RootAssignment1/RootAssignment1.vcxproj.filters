@@ -21,9 +21,15 @@
     <ClCompile Include="LineKeeperDriver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LineKeeper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineKeeper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

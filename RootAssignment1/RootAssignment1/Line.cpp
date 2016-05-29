@@ -11,73 +11,78 @@ using std::endl;
 using std::strcpy;
 
 
-Line::Line() : minimumCapacity(100), maximumCapacity(1000) //: linePtr{ new char[1]{ '\0' } }
+Line::Line() : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000) //: linePtr{ new char[1]{ '\0' } }
 {
-    //minimumCapacity = 100;
+   	linePtr  = new char[MINIMUM_CAPACITY];
 	
-	linePtr  = new char[minimumCapacity];
-	
-    linePtr[0] = '\0';
+	linePtr[0] = '\0';
 
-	currentCapacity=strlen(linePtr);
-	
-	cout<<currentCapacity<<endl;
+	availableIndex = 0;
 
+	currentCapacity=MINIMUM_CAPACITY-1;
+	
 	//cout<<currentCapacity<<endl;
-    cout << "default empty Line ctor" << endl;
+
+	cout << "default empty Line ctor" << endl;
 
 }
 
-Line::Line(char* someLine) : minimumCapacity(100), maximumCapacity(1000){
+Line::Line(char* someLine) : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000){
 
-	//minimumCapacity = 100;
-
-	cout<<"Line char* constructor: "<<endl;
-
-	currentCapacity = strlen(someLine);
+	int tempLength = strlen (someLine);
 	
-	//minimumCapacity =  minimumCapacity - (currentCapacity+1);
-
-	linePtr = new char[currentCapacity+1];
-
+	if (tempLength < MINIMUM_CAPACITY){
 	
-	linePtr[currentCapacity] = '\0';
+		linePtr = new char[MINIMUM_CAPACITY];
 
-	availableIndex = strlen(someLine)+1;
+		strcpy (linePtr, someLine);
+
+		linePtr[tempLength] = '\0';
+
+		availableIndex = tempLength;
+
+		currentCapacity=MINIMUM_CAPACITY-1;
+	}
+
+	else if (tempLength < MAXIMUM_CAPACITY)
+	{
+
+		linePtr = new char[tempLength+1];
 	
-	strcpy (linePtr,someLine);
+		linePtr[tempLength] = '\0';
+
+		availableIndex = tempLength;
+
+		currentCapacity=tempLength;
+		
+
+	}
+
+	else { 
+
+		cout<<"Too long you piece of shit, cant save this line  8==============D"<<endl;
 	
+		//TODO: ADD AN EXCEPTION FOR THIS PIECE OF SHIET
 
-
+	}
+		
 }
 
-Line::Line(char someChar):minimumCapacity(100), maximumCapacity(1000)
+Line::Line(char someChar):MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000)
 {
 
 	cout<<"Line simple char constructor: "<<endl;
 	
-	linePtr = new char[minimumCapacity];
+	linePtr = new char[MINIMUM_CAPACITY];
 	
 	linePtr[0] = someChar;
 
 	linePtr[1] = '\0';
 
-	currentCapacity = minimumCapacity;
+	currentCapacity = MINIMUM_CAPACITY-1;
 
 	availableIndex = 1;
 
-	//minimumCapacity =  minimumCapacity - (currentCapacity+1);
-
-	//linePtr = new char(); // someChar = new char;
-
-//	linePtr = a;
-	
-	//linePtr = someChar;
-
-	
-	//linePtr[currentCapacity+1] = '\0';
-
-	
 	
 }
 
@@ -87,7 +92,6 @@ Line::Line(char someChar):minimumCapacity(100), maximumCapacity(1000)
 
 void Line::print() const // const means that print cannot modify *this
 {
-	
 	cout<<"Line print method: "<<endl;
 
 	cout << linePtr << endl; // showing off using our own operator<< overload
@@ -103,20 +107,23 @@ void Line::print() const // const means that print cannot modify *this
 
 Line::~Line()
 {
-	
-    std::cerr << "Line dtor: " << endl;
+	std::cerr << "Line dtor: " << endl;
 	std::cerr<<linePtr<<std::endl;
     delete[] linePtr;
     linePtr = nullptr;   // defensive programming
 }
 
-Line::Line(const Line& thatLine):minimumCapacity(100), maximumCapacity(1000)
+Line::Line(const Line& thatLine):MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000)
 {
     
 	cout << "Line copy ctor: " << endl;
 
-    linePtr = new char[strlen(thatLine.linePtr)+1];
+    //linePtr = new char[strlen(thatLine.linePtr)+1];
+
+	linePtr = new char[thatLine.currentCapacity+1];
+
     currentCapacity = thatLine.currentCapacity;
+
 	strcpy(linePtr, thatLine.linePtr);
 }
 
@@ -191,40 +198,43 @@ bool Line::empty(){
 
 void Line::push_back (const char& someChar){
 
+	if (availableIndex == currentCapacity){
+	
+	resize(2*currentCapacity);
+	
+	}
 	
 	linePtr[availableIndex++] = someChar;
 	
 	linePtr[availableIndex] = '\0';
 
-	cout << "push back" << endl;
+	//cout << "push back" << endl;
 
 }
 
 
-void Line::resize (){
+void Line::resize (int newSize){
 
 	cout<<currentCapacity<<endl;
 
 
-	char* tempPtr = new char[2 * currentCapacity];
+	char* tempPtr = new char[newSize+1];
 	
 	cout<<availableIndex<<endl;
 
 	
-
-
-
 	for (int i = 0; i < this->availableIndex;i++ ) {
 	
 	tempPtr[i] = linePtr[i];
-	
-	
-
+		
 	}
+
+	currentCapacity = newSize;
 
 	tempPtr[availableIndex]='\0';
 
 	delete[] linePtr;
+
 	linePtr = nullptr;
 	
 	linePtr = tempPtr;
@@ -232,9 +242,6 @@ void Line::resize (){
 	cout << "resize" << endl;
 
 }
-
-
-
 
 void Line::pop_back (){
 
@@ -246,15 +253,17 @@ void Line::pop_back (){
 	
 	}
 
-	else {
+	if (availableIndex == currentCapacity/4) {
+	
+	resize(currentCapacity/2);
+
+	}	
 	
 	linePtr[--availableIndex]='\0';
 
 	cout << "pop back" << endl;
-	}
+	
 }
-
-
 
 
 bool Line::full(){
@@ -292,64 +301,9 @@ const int Line::capacity(){
 }
 
 
-
-
-
-
-
-
-/*
-
-Line::Line(char){
-
-
-}
-
-
-Line::Line(const Line& thatLine)
-{
-    cout << "Line copy ctor" << endl;
-    linePtr = new char[strlen(thatLine.linePtr) + 1];
-    strcpy(linePtr, thatLine.linePtr);
-}
-
-
-
-Line::Line(char *cstr)
-{
-    cout << "ctor Line(char *)" << endl;
-    linePtr = new char[strlen(cstr) + 1]; // what's the +1 for?
-    strcpy(linePtr, cstr);
-}
-
-
-const int cstr(){
+char* Line::cstr(){
 
 	cout << "cstr" << endl;
 
-	return 1;
+	return linePtr;
 }
-
-int length(){
-
-	cout << "len" << endl;
-
-	return 1;
-}
-
-
-const int capacity(){
-
-	 cout << "capacity" << endl;
-
-	 return 1;
-
-}
-
-
-
-
-
-
-
-*/
