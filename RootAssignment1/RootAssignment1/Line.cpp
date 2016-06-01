@@ -99,12 +99,6 @@ void Line::print() const // const means that print cannot modify *this
 	// cout << (*this).linePtr << endl; // same as above
 }
 
-
-
-
-
-
-
 Line::~Line()
 {
 	std::cerr << "Line dtor: " << endl;

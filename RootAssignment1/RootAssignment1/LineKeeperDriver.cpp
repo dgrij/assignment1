@@ -1,7 +1,7 @@
 #include <iostream>     // for cout and cin
 //#include "LineKeeper.h"   // for LineKeeper class
 #include "Line.h"
-#include"string.h"
+#include "string.h"
 #include "linekeeper.h"
 using namespace std;   // safe to use this using-directive here
 
@@ -81,92 +81,7 @@ int main()
 	
 	
 	
-	/*
-
-
-
-	FILE * pFile;
-char mystring[100];
-
-fope_s(&pFile, "a.txt", "r");
-if (pFile == NULL) perrror ("error opening file");
-else {
- while (fgets (mystring,100,pFile) != NULL)
-cout<<mystring;
-fclose(pFile);
-}
-
-
-
-
-
-int*c = new int(9);
-int d=9;
-
-
-
-cout << *c<<end;
-c =&d;
-cout <<*c<<endl;
-
-int a[10]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	*/
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-	
+		
 	/*
 	
 	LineKeeper m1; // an empty string
