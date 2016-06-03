@@ -16,25 +16,17 @@ LineKeeper::LineKeeper(const char* fileName) //: linePtr{ new char[1]{ '\0' } }
 	
 	fin.open(fileName);
 
-	/*
-	fin.getline(temp, 1000);
-	cout << temp<<std::endl;
-	fin.getline(temp, 1000);
-		cout << temp<<std::endl;
-	fin.getline(temp, 1000);
-	cout << temp<<std::endl;
-
-	*/
-
 
 	while(!fin.eof()){
 		fin.getline(temp, 1000);
-		std::cout << temp<<std::endl;
+		push_back(temp);
 	}
 
 	fin.close();
 
 	delete[] temp;
+	
+	LinkedList<Line>::print();
 
 }
 
@@ -43,6 +35,9 @@ LineKeeper::LineKeeper(const char* fileName) //: linePtr{ new char[1]{ '\0' } }
 void print (int m, int n)
 
 {
+
+
+
 
 
 

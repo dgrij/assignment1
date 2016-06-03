@@ -2,21 +2,85 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include <iostream>     // for ostream
+#include <string>
+#include <cstring>
+#include <cstdio>
 
+using namespace std;
 using std::ostream;
-
-template<typename T> class LinkedList
-{
-	
-	template<typename T> 
+using std::cout;
+using std::endl;
+using std::strcpy;
 
 
-private:
+template<typename D>
+class LinkedList{
 	
-	
-    Node<T>* head;
+	private: 
+				
+				class ListNode{ 
 		
-	Node<T>* tail;
+				friend class LinkedList;
+
+				D data;
+				ListNode* next;
+				ListNode* prev;
+	
+				//NODE OBJECT DEFINITION
+
+				ListNode (){
+
+				next = nullptr;
+				prev = nullptr;
+				data = 0;
+
+				}
+				
+				ListNode(const D& someData):data(someData){
+
+					next = nullptr;
+					prev = nullptr;
+						
+				}
+
+				~ListNode(){
+				}
+
+				void print(){
+				
+					cout<<data<<endl;
+
+				}
+
+				/*
+
+				ListNode (const T& someLine, ListNode* prevNode, ListNode* nextNode){
+
+					T& = someLine;
+					ListNode* = prevNode;
+					ListNode* = nextNode;
+
+				}
+
+				ListNode (T& someLine){
+
+					T& = someLine;
+					next = nullptr;
+					prev = nullptr;
+	
+				}
+
+				*/
+
+				
+
+			};
+
+	
+
+	ListNode* head;
+		
+	ListNode* tail;
 
 	size_t size;                   
 
@@ -24,27 +88,265 @@ public:
  
 // Linked List Constructors
 
-	LinkedList ();                                  // default constructor
+                                 // default constructor
    
-	LinkedList(Node<T>*);		// a constructor overload
+	//LinkedList(ListNode<T>*);		// a constructor overload
     
-	LinkedList (const LinkedList<T>& thatList);		// copy constructor
+	//LinkedList (const LinkedList<T>& thatList);		// copy constructor
    
-	~LinkedList ();									// destructor
+	//~LinkedList ();									// destructor
     
-	template<typename T> const LinkedList& operator=(const LinkedList&);	// assignment operator overload
+	//const LinkedList& operator=(const LinkedList&);	// assignment operator overload
     
-	template<typename T> friend ostream& operator<<(ostream& output, const LinkedList& thatList);  // we did not write this member function in class
+	//friend ostream& operator<<(ostream& output, const LinkedList& thatList);  // we did not write this member function in class
     	
 // Linked List Methods
 
-	void print() const;		// const means that print does not modify *this
-	void push_front(T data);
-	void push_back(T data);
-	void pop_front();
-	void pop_back();
+	//void print() const;		// const means that print does not modify *this
+	//void push_front(T data);
+	//void push_back(T data);
+	//void pop_front();
+	//void pop_back();
+
+
+
+/*
+//
+//	TEMPLATE DEFINITIONS
+//
+*/
+
+
+
+LinkedList () {
+
+	head = nullptr;
+	tail = nullptr;
+	size = 0;
+
+}
+/*
+LinkedList (const LinkedList& thatList){
+
+	head = nullptr;
+	tail = nullptr;
+	size = thatList.size;
+		
+	ListNode* current = head = new ListNode(thatList.head->data);
+
+	while (current != nullptr)
+	{
+		
+		push_back (current->data);
+
+		current=current->next;
+
+	}
+
+}*/
+
+
+LinkedList (const LinkedList& thatList){
+
+	head = nullptr;
+	tail = nullptr;
+	size = thatList.size;
+		
+	ListNode* temp = head = new ListNode(thatList.head->data);
+
+	ListNode* temp2 = thatList.head->next;
+	
+	while (temp2 != nullptr)
+	{
+		temp->next = new ListNode(temp2->data);
+		
+		temp = temp->next;
+		
+		temp2 = temp2->next;
+
+	}
+
+}
+
+
+
+~LinkedList(){
+}
+
+
+//method declaration
+void push_front(const D& data){
+
+	
+		if (size == 0){
+
+				
+		ListNode* temp = new ListNode (data);
+	
+		head = temp;
+		
+		tail = temp;
+		
+		size++;
+
+		return;
+	
+		}
+
+		
+		ListNode* temp = new ListNode (data);
+	
+		temp->next = head;
+		
+		head->prev = temp;
+				
+		head=temp;
+
+		size++;
+
+		}
+
+void push_back(const D& data){
+	
+		if (size == 0){
+				
+		ListNode* temp = new ListNode (data);
+	
+		head = temp;
+		tail = temp;
+	
+		size++;
+
+		return;
+	
+		}
+
+	
+		ListNode* temp = new ListNode (data);
+	
+		temp->prev = tail;
+		
+		tail->next = temp;
+		
+		tail=temp;
+
+		size++;
+
+
+		}
+
+
+				
+void pop_front(){
+	
+				if (size == 0){
+
+				
+				cout<<"Your LinkList is empty... nothing to pop"<<endl;
+
+				return;
+	
+				}
+
+
+				else if (head == tail)
+				{
+					delete head;
+					head = nullptr;
+					tail = nullptr;
+
+					cout<<"Last ListNode deleted, your list is empty"<<endl;
+
+					size--;
+
+					return;
+				}
+
+				ListNode* temp = head->next;
+		
+	
+				delete head;
+	
+				head=temp;
+
+				size--;
+
+	
+
+
+}
+
+void pop_back(){
+
+				if (size == 0){
+
+				
+				cout<<"Your LinkList is empty... nothing to pop"<<endl;
+
+				return;
+	
+				}
+
+
+				else if (head == tail)
+				{
+					delete head;
+					head = nullptr;
+					tail = nullptr;
+
+					cout<<"Last ListNode deleted, your list is empty"<<endl;
+
+					size--;
+
+					return;
+				}
+
+				ListNode* temp = tail->prev;
+		
+	
+				delete tail;
+	
+				tail=temp;
+
+				tail->next = nullptr;
+
+				size--;
+				
+				}
+
+
+void print(){
+
+				ListNode* temp;
+
+				temp = head;
+
+				cout<<"[LIST HEAD]-"<<"[LIST SIZE: "<<size<<"]"<<endl;
+
+				while (temp!=nullptr){
+
+					temp->print();
+					temp=temp->next;
+				}
+
+				cout<<"[LIST TAIL]"<<endl;
+				
+				}
+
+
+
 
 };
+
+
+
+
+
+
+
+
+
+
 
 #endif
 

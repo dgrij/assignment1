@@ -10,9 +10,13 @@ int main()
    
 	{
 	
-	LineKeeper linekeeper ("text.txt");
+	LineKeeper linekeeper ("originalterroristtext.txt");
 
-		
+	
+
+
+
+
 		
 
 

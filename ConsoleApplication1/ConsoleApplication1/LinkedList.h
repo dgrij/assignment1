@@ -13,16 +13,16 @@ using std::endl;
 using std::strcpy;
 
 
-
+template<typename D>
 class LinkedList{
 	
 	private: 
-		
+				
 				class ListNode{ 
 		
 				friend class LinkedList;
 
-				int data;
+				D data;
 				ListNode* next;
 				ListNode* prev;
 	
@@ -36,7 +36,7 @@ class LinkedList{
 
 				}
 				
-				ListNode(int& someData){
+				ListNode(D& someData){
 
 					next = nullptr;
 					prev = nullptr;
@@ -176,7 +176,7 @@ LinkedList (const LinkedList& thatList){
 
 
 //method declaration
-void push_front(int data){
+void push_front(const D& data){
 
 	
 		if (size == 0){
@@ -207,7 +207,7 @@ void push_front(int data){
 
 		}
 
-void push_back(int data){
+void push_back(const D& data){
 	
 		if (size == 0){
 				

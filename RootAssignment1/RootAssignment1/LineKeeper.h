@@ -5,10 +5,13 @@
 #include "Line.h"
 #include <iostream>     // for ostream
 #include <fstream>
+#include "LinkedList.h"
+
 using std::ostream;
 
-class LineKeeper //to add for linked list ->: public LinkedList<Line>
+class LineKeeper : public LinkedList<Line> //to add for linked list ->: public LinkedList<Line>
 {
+
 private:
 	 
 	int lineLenght;

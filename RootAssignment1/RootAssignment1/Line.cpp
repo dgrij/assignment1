@@ -23,11 +23,15 @@ Line::Line() : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000) //: linePtr{ new ch
 	
 	//cout<<currentCapacity<<endl;
 
-	cout << "default empty Line ctor" << endl;
+	//cout << "default empty Line ctor" << endl;
 
 }
 
 Line::Line(char* someLine) : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000){
+
+	cout<<"someshit"<<endl;
+	
+	cout<<strlen(someLine)<<endl;
 
 	int tempLength = strlen (someLine);
 	
@@ -42,12 +46,16 @@ Line::Line(char* someLine) : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000){
 		availableIndex = tempLength;
 
 		currentCapacity=MINIMUM_CAPACITY-1;
+
+		
 	}
 
 	else if (tempLength < MAXIMUM_CAPACITY)
 	{
 
 		linePtr = new char[tempLength+1];
+
+		strcpy (linePtr, someLine);
 	
 		linePtr[tempLength] = '\0';
 
@@ -55,12 +63,13 @@ Line::Line(char* someLine) : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000){
 
 		currentCapacity=tempLength;
 		
+		
 
 	}
 
 	else { 
 
-		cout<<"Too long you piece of shit, cant save this line  8==============D"<<endl;
+		cout<<"Too long line"<<endl;
 	
 		//TODO: ADD AN EXCEPTION FOR THIS PIECE OF SHIET
 
@@ -71,7 +80,7 @@ Line::Line(char* someLine) : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000){
 Line::Line(char someChar):MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000)
 {
 
-	cout<<"Line simple char constructor: "<<endl;
+	//cout<<"Line simple char constructor: "<<endl;
 	
 	linePtr = new char[MINIMUM_CAPACITY];
 	
@@ -92,7 +101,7 @@ Line::Line(char someChar):MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000)
 
 void Line::print() const // const means that print cannot modify *this
 {
-	cout<<"Line print method: "<<endl;
+	//cout<<"Line print method: "<<endl;
 
 	cout << linePtr << endl; // showing off using our own operator<< overload
     //cout << this->linePtr << endl; // same as above
@@ -101,8 +110,8 @@ void Line::print() const // const means that print cannot modify *this
 
 Line::~Line()
 {
-	std::cerr << "Line dtor: " << endl;
-	std::cerr<<linePtr<<std::endl;
+	//std::cerr << "Line dtor: " << endl;
+	//std::cerr<<linePtr<<std::endl;
     delete[] linePtr;
     linePtr = nullptr;   // defensive programming
 }
@@ -110,7 +119,7 @@ Line::~Line()
 Line::Line(const Line& thatLine):MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000)
 {
     
-	cout << "Line copy ctor: " << endl;
+	//cout << "Line copy ctor: " << endl;
 
     //linePtr = new char[strlen(thatLine.linePtr)+1];
 
