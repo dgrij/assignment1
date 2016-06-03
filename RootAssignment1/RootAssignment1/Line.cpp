@@ -29,9 +29,9 @@ Line::Line() : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000) //: linePtr{ new ch
 
 Line::Line(char* someLine) : MINIMUM_CAPACITY(100), MAXIMUM_CAPACITY(1000){
 
-	cout<<"someshit"<<endl;
+	//cout<<"inside constructior"<<endl;
 	
-	cout<<strlen(someLine)<<endl;
+	//cout<<strlen(someLine)<<endl;
 
 	int tempLength = strlen (someLine);
 	

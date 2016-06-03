@@ -9,7 +9,7 @@ using std::strcpy;
 LineKeeper::LineKeeper(const char* fileName) //: linePtr{ new char[1]{ '\0' } }
 {
     
-	cout<<"inside lk"<<endl;
+	//cout<<"inside lk"<<endl;
 
 	char* temp = new char[1000];
 	std::ifstream fin;

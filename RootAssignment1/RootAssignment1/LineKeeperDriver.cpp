@@ -1,7 +1,7 @@
 #include <iostream>     // for cout and cin
 //#include "LineKeeper.h"   // for LineKeeper class
 #include "Line.h"
-#include "string.h"
+//#include "string.h"
 #include "linekeeper.h"
 using namespace std;   // safe to use this using-directive here
 
@@ -14,10 +14,16 @@ int main()
 
 	
 
-	lk.print(-2,120);
+	lk.print(5,-25);
+
+	lk.print(1,5);
+
+	lk.print(-23,-25);
+
+	lk.print(2,25);
 
 	
-
+	}
 
 
 
@@ -81,7 +87,7 @@ int main()
 	
 	*/
 
-	}
+	
 
 
 

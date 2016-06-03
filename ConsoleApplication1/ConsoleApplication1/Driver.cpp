@@ -1,21 +1,100 @@
 #include "LinkedList.h"
 
-
+using namespace std;
 
 
 int main(){
+	{
 
-	LinkedList l;
+
+	LinkedList<string> l;
 	
-	l.push_back(2);
-	l.push_back(1);
-	l.push_back(3);
-	l.push_back(5);
-	l.push_back(6);
+	l.push_back("Gleb Revolutionary");
 
+	l.push_back("Anna Arabienko");
 
-	l.pop_back();
+	l.push_back("Dima Immigrainienko");
+
+	l.push_back("Andrea Poyehavshaya");
+
+	l.push_back("Alissa My Baby");
+
+	
 	l.print();
+
+	LinkedList<string> someList(l);
+
+	
+	someList.print();
+
+
+	LinkedList<string> beb;
+
+	beb=l;
+
+	beb.print();
+
+
+	
+	
+	
+	
+	//someList.push_back("Test");
+
+
+
+	//LinkedList<string> oneList;
+
+	//oneList=someList;
+
+
+	
+
+
+
+	}
+
+	
+	
+
+	/*
+	
+
+	LinkedList<string> anotherList;
+
+	anotherList=l;
+
+	anotherList.print();
+
+	anotherList.pop_back();
+
+	anotherList.print();
+
+	anotherList.push_back("Indian Goswami");
+
+	anotherList.print();
+
+
+	LinkedList<string> indianList = anotherList;
+
+	indianList.print();
+
+	indianList.pop_back();
+
+	indianList.print();
+	*/
+
+	//indianList.push_back("Sacred Cow");
+
+	//indianList.print();
+
+
+
+	
+
+
+
+
 
 	while(true){
 	

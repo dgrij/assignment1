@@ -17,6 +17,7 @@ template<typename D>
 class LinkedList{
 	
 	private: 
+
 				
 				class ListNode{ 
 		
@@ -28,20 +29,21 @@ class LinkedList{
 	
 				//NODE OBJECT DEFINITION
 
-				ListNode (){
+				
+								
+				ListNode (): data(){
 
 				next = nullptr;
 				prev = nullptr;
-				data = 0;
+			
 
 				}
 				
-				ListNode(D& someData){
+				ListNode(const D& someData):data(someData){
 
 					next = nullptr;
 					prev = nullptr;
-					data = someData;
-	
+						
 				}
 
 				~ListNode(){
@@ -78,14 +80,90 @@ class LinkedList{
 			};
 
 	
-
+				
 	ListNode* head;
 		
 	ListNode* tail;
 
-	size_t size;                   
+	ListNode* temp;
 
+	size_t size;          
+
+	
+
+public:	void copy(const LinkedList& thatList){
+	
+		head = new ListNode();
+		tail = new ListNode();
+		size=0;
+		head->next=tail;
+		tail->prev=head;
+
+		// temp=thatList.head;
+
+		ListNode* arab=thatList.head;
+
+
+		arab=arab->next;
+
+		while (arab!=thatList.tail){
+		
+		//temp->print();
+		// cout << "here"<<endl;
+
+		push_back(arab->data);
+
+		arab= arab->next;
+
+		
+		}
+
+		
+
+
+
+	
+	}
+	
+	
+
+
+	void del() {
+	
+
+		while (head!=nullptr){
+		
+		
+		temp=head;
+
+		head=head->next;
+
+		delete temp;
+
+		}
+
+		size=0;
+		tail=nullptr;
+
+		// cout<<"deleted"<<endl;
+
+	}
+
+	
+
+	
 public:
+
+
+	LinkedList& operator=(const LinkedList& thatList){
+	if(this!=&thatList){
+	del();
+	copy(thatList);
+	}
+	return *this;
+
+
+	}
  
 // Linked List Constructors
 
@@ -119,13 +197,13 @@ public:
 
 
 
-LinkedList () {
+LinkedList () : head(new ListNode()), tail(new ListNode()), size(0) {
 
-	head = nullptr;
-	tail = nullptr;
-	size = 0;
-
+	tail->prev = head;
+	head->next = tail;
+	
 }
+
 /*
 LinkedList (const LinkedList& thatList){
 
@@ -149,88 +227,54 @@ LinkedList (const LinkedList& thatList){
 
 LinkedList (const LinkedList& thatList){
 
-	head = nullptr;
-	tail = nullptr;
-	size = thatList.size;
-		
-	ListNode* temp = head = new ListNode(thatList.head->data);
-
-	ListNode* temp2 = thatList.head->next;
-	
-	while (temp2 != nullptr)
-	{
-		temp->next = new ListNode(temp2->data);
-		
-		temp = temp->next;
-		
-		temp2 = temp2->next;
-
-	}
+	if (this != &thatList)
+		copy(thatList);
 
 }
 
 
 
+
+
 ~LinkedList(){
+
+	del();
 }
 
 
 //method declaration
 void push_front(const D& data){
 
+					
+		temp = new ListNode (data);
 	
-		if (size == 0){
-
-				
-		ListNode* temp = new ListNode (data);
-	
-		head = temp;
+		head->next->prev = temp;
 		
-		tail = temp;
+		temp->next=head->next;
+
+		head->next=temp;
+
+		temp->prev=head;	
 		
 		size++;
 
-		return;
-	
-		}
 
-		
-		ListNode* temp = new ListNode (data);
-	
-		temp->next = head;
-		
-		head->prev = temp;
-				
-		head=temp;
-
-		size++;
 
 		}
 
 void push_back(const D& data){
 	
-		if (size == 0){
-				
-		ListNode* temp = new ListNode (data);
+			
+		temp = new ListNode (data);
 	
-		head = temp;
-		tail = temp;
-	
-		size++;
-
-		return;
-	
-		}
-
-	
-		ListNode* temp = new ListNode (data);
-	
-		temp->prev = tail;
+		tail->prev->next = temp;
 		
-		tail->next = temp;
-		
-		tail=temp;
+		temp->prev=tail->prev;
 
+		tail->prev= temp;
+
+		temp->next=tail;	
+		
 		size++;
 
 
@@ -240,37 +284,24 @@ void push_back(const D& data){
 				
 void pop_front(){
 	
-				if (size == 0){
+				if (size!=0){
+	
 
+				temp = head->next;
 				
-				cout<<"Your LinkList is empty... nothing to pop"<<endl;
+				temp->next->prev=head;
+				
+				head->next = temp->next;
 
-				return;
-	
-				}
+				delete temp;
 
-
-				else if (head == tail)
-				{
-					delete head;
-					head = nullptr;
-					tail = nullptr;
-
-					cout<<"Last ListNode deleted, your list is empty"<<endl;
-
-					size--;
-
-					return;
-				}
-
-				ListNode* temp = head->next;
-		
-	
-				delete head;
-	
-				head=temp;
+				temp = nullptr;
 
 				size--;
+
+				}
+	
+	
 
 	
 
@@ -279,52 +310,32 @@ void pop_front(){
 
 void pop_back(){
 
-				if (size == 0){
-
 				
-				cout<<"Your LinkList is empty... nothing to pop"<<endl;
-
-				return;
+				if (size!=0){
 	
-				}
 
+				temp = tail->prev;
+				
+				temp->prev->next=tail;
+				
+				tail->prev = temp->prev;
 
-				else if (head == tail)
-				{
-					delete head;
-					head = nullptr;
-					tail = nullptr;
+				delete temp;
 
-					cout<<"Last ListNode deleted, your list is empty"<<endl;
-
-					size--;
-
-					return;
-				}
-
-				ListNode* temp = tail->prev;
-		
-	
-				delete tail;
-	
-				tail=temp;
-
-				tail->next = nullptr;
+				temp = nullptr;
 
 				size--;
-				
-				}
 
+				}
+}
 
 void print(){
 
-				ListNode* temp;
-
-				temp = head;
+				temp = head->next;
 
 				cout<<"[LIST HEAD]-"<<"[LIST SIZE: "<<size<<"]"<<endl;
 
-				while (temp!=nullptr){
+				while (temp!=tail){
 
 					temp->print();
 					temp=temp->next;
@@ -333,6 +344,135 @@ void print(){
 				cout<<"[LIST TAIL]"<<endl;
 				
 				}
+
+
+void print(int maxLine){
+
+	if (maxLine < 0) {
+
+		cout<<"[------------NEGATIVE LINE, RESET TO 0 ---------------]"<<endl;
+	
+		maxLine = 0;
+	}
+
+	else if (maxLine > size){
+
+
+		cout<<"[------------LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]"<<endl;
+
+		maxLine = size;
+	
+	}
+
+
+
+
+				ListNode* temp;
+
+				temp = head;
+
+				cout<<"[LIST HEAD]-"<<"[LIST SIZE: "<<size<<"]"<<endl;
+
+				
+				for (int i = 0; i < maxLine; i++) {
+				
+					cout<<"("<<i+1<<") ";
+
+					temp->print();
+
+					temp=temp->next;
+
+				}
+								
+								
+				cout<<"[LIST TAIL]"<<endl;
+				
+				}
+
+
+
+void print(int minLine, int maxLine ){
+
+	if (maxLine<minLine){
+	
+		cout<<"[------------INVALID RANGE OF LINES, LINES WILL BE INVERTED---------------]"<<endl;
+
+		int tempMax = minLine;
+			
+		minLine = maxLine;
+
+		maxLine = tempMax;
+		
+	}
+	
+	if (minLine < 0) {
+	
+		cout<<"[------------NEGATIVE MIN LINE, RESET TO 0 ---------------]"<<endl;
+
+		minLine = 0;
+	}
+
+	else if (minLine > size){
+
+		cout<<"[------------MIN LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]"<<endl;
+
+		minLine = size;
+	
+	}
+
+	
+
+	if (maxLine < 0) {
+
+		cout<<"[------------NEGATIVE MAX LINE, RESET TO 0 ---------------]"<<endl;
+	
+		maxLine = 0;
+	}
+
+	else if (maxLine > size){
+
+
+		cout<<"[------------MAX LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]"<<endl;
+
+		maxLine = size;
+	
+	}
+
+	
+
+
+
+
+	ListNode* temp;
+
+				temp = head;
+
+				cout<<"[LIST HEAD]-"<<"[LIST SIZE: "<<size<<"]"<<endl;
+
+				
+				for (int i = 0; i < maxLine; i++) {
+				
+					if (i >= minLine-1){					
+					
+					cout<<"("<<i+1<<") ";
+
+					temp->print();
+										
+					}
+					
+					temp=temp->next;
+
+				}
+								
+								
+				cout<<"[LIST TAIL]"<<endl;
+				
+				}
+
+
+
+
+
 
 
 
