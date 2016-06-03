@@ -26,20 +26,9 @@ LineKeeper::LineKeeper(const char* fileName) //: linePtr{ new char[1]{ '\0' } }
 
 	delete[] temp;
 	
-	LinkedList<Line>::print();
+	
 
 }
 
 
-
-void print (int m, int n)
-
-{
-
-
-
-
-
-
-}
 

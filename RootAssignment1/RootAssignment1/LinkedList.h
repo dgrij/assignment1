@@ -334,6 +334,116 @@ void print(){
 				}
 
 
+void print(int maxLine){
+
+				ListNode* temp;
+
+				temp = head;
+
+				cout<<"[LIST HEAD]-"<<"[LIST SIZE: "<<size<<"]"<<endl;
+
+				
+				for (int i = 0; i < maxLine; i++) {
+				
+					cout<<"("<<i+1<<") ";
+
+					temp->print();
+
+					temp=temp->next;
+
+				}
+								
+								
+				cout<<"[LIST TAIL]"<<endl;
+				
+				}
+
+
+
+void print(int minLine, int maxLine ){
+
+	if (maxLine<minLine){
+	
+		cout<<"[------------INVALID RANGE OF LINES, LINES WILL BE INVERTED---------------]"<<endl;
+
+		int tempMax = minLine;
+			
+		minLine = maxLine;
+
+		maxLine = tempMax;
+		
+	}
+	
+	if (minLine < 0) {
+	
+		cout<<"[------------NEGATIVE MIN LINE, RESET TO 0 ---------------]"<<endl;
+
+		minLine = 0;
+	}
+
+	else if (minLine > size){
+
+		cout<<"[------------MIN LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]"<<endl;
+
+		minLine = size-1;
+	
+	}
+
+	
+
+	if (maxLine < 0) {
+
+		cout<<"[------------NEGATIVE MAX LINE, RESET TO 0 ---------------]"<<endl;
+	
+		maxLine = 0;
+	}
+
+	else if (maxLine > size){
+
+
+		cout<<"[------------MAX LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]"<<endl;
+
+		maxLine = size-1;
+	
+	}
+
+	
+
+
+
+
+	ListNode* temp;
+
+				temp = head;
+
+				cout<<"[LIST HEAD]-"<<"[LIST SIZE: "<<size<<"]"<<endl;
+
+				
+				for (int i = 0; i <= maxLine; i++) {
+				
+					if (i >= minLine-1){					
+					
+					cout<<"("<<i+1<<") ";
+
+					temp->print();
+										
+					}
+					
+					temp=temp->next;
+
+				}
+								
+								
+				cout<<"[LIST TAIL]"<<endl;
+				
+				}
+
+
+
+
+
+
+
 
 
 };

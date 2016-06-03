@@ -21,7 +21,7 @@ public:
 
    LineKeeper (const char* fileName);
 
-   void print (int m, int n);
+  // void print (int m, int n);
    
 
 };

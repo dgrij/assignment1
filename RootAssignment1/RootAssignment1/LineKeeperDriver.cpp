@@ -10,9 +10,14 @@ int main()
    
 	{
 	
-	LineKeeper linekeeper ("originalterroristtext.txt");
+	LineKeeper lk ("originalterroristtext.txt");
 
 	
+
+	lk.print(-2,120);
+
+	
+
 
 
 
