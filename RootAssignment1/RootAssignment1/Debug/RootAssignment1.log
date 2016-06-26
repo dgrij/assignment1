@@ -1,25 +1,8 @@
-﻿Build started 03-Jun-2016 12:04:04 AM.
+﻿Build started 03-Jun-2016 7:30:15 PM.
      1>Project "C:\Users\Dmitri\Documents\Visual Studio 2012\Projects\Asssignment1\RootAssignment1\RootAssignment1\RootAssignment1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt LineKeeperDriver.cpp
-         LineKeeperDriver.cpp
-     1>c:\users\dmitri\documents\visual studio 2012\projects\asssignment1\rootassignment1\rootassignment1\linkedlist.h(415): warning C4018: '>' : signed/unsigned mismatch
-                 c:\users\dmitri\documents\visual studio 2012\projects\asssignment1\rootassignment1\rootassignment1\linkedlist.h(394) : while compiling class template member function 'void LinkedList<D>::print(int,int)'
-                 with
-                 [
-                     D=Line
-                 ]
-                 c:\users\dmitri\documents\visual studio 2012\projects\asssignment1\rootassignment1\rootassignment1\linekeeperdriver.cpp(17) : see reference to function template instantiation 'void LinkedList<D>::print(int,int)' being compiled
-                 with
-                 [
-                     D=Line
-                 ]
-                 c:\users\dmitri\documents\visual studio 2012\projects\asssignment1\rootassignment1\rootassignment1\linekeeper.h(13) : see reference to class template instantiation 'LinkedList<D>' being compiled
-                 with
-                 [
-                     D=Line
-                 ]
-     1>c:\users\dmitri\documents\visual studio 2012\projects\asssignment1\rootassignment1\rootassignment1\linkedlist.h(432): warning C4018: '>' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt LineKeeper.cpp
+         LineKeeper.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Dmitri\Documents\Visual Studio 2012\Projects\Asssignment1\RootAssignment1\Debug\RootAssignment1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Dmitri\Documents\Visual Studio 2012\Projects\Asssignment1\RootAssignment1\Debug\RootAssignment1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Dmitri\Documents\Visual Studio 2012\Projects\Asssignment1\RootAssignment1\Debug\RootAssignment1.lib" /MACHINE:X86 Debug\Line.obj
          Debug\LineKeeper.obj
@@ -29,4 +12,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.06
+Time Elapsed 00:00:01.24

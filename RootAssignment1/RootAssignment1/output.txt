@@ -1,0 +1,51 @@
+[LIST HEAD]-[LIST SIZE: 19]
+(1) Do not pass objects to functions by value;
+(2) if the objects handle dynamic memory (i.e., heap memory)
+[LIST TAIL]
+[------------INVALID RANGE OF LINES, LINES WILL BE INVERTED---------------]
+[LIST HEAD]-[LIST SIZE: 19]
+(7) make sure that the class of these objects defines
+(8) a copy constructor,
+(9) a copy assignment operator,
+(10) and a destructor.
+(11) That's called "the rule of three", or "the big three",
+(12) and is emphasized in the C++ literature over and over and over again!
+(13)
+[LIST TAIL]
+[------------INVALID RANGE OF LINES, LINES WILL BE INVERTED---------------]
+[------------MAX LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]
+[LIST HEAD]-[LIST SIZE: 19]
+(5)
+(6) But if you must pass these objects by value,
+(7) make sure that the class of these objects defines
+(8) a copy constructor,
+(9) a copy assignment operator,
+(10) and a destructor.
+(11) That's called "the rule of three", or "the big three",
+(12) and is emphasized in the C++ literature over and over and over again!
+(13)
+(14) To optimize performance, C++11 introduced
+(15) move constructor, and
+(16) move assignment operator.
+(17) As a result, we must now follow "the rule of five" in C++.
+(18) There are 19 lines in this file.
+(19) Lines 5, and 13 are empty lines.
+[LIST TAIL]
+[------------NEGATIVE MIN LINE, RESET TO 0 ---------------]
+[LIST HEAD]-[LIST SIZE: 19]
+(1) Do not pass objects to functions by value;
+(2) if the objects handle dynamic memory (i.e., heap memory)
+(3) do not ever pass objects to functions by value;
+(4) instead pass by reference, or even better, pass by const reference.
+(5)
+[LIST TAIL]
+[------------INVALID RANGE OF LINES, LINES WILL BE INVERTED---------------]
+[------------NEGATIVE MIN LINE, RESET TO 0 ---------------]
+[------------NEGATIVE MAX LINE, RESET TO 0 ---------------]
+[LIST HEAD]-[LIST SIZE: 19]
+[LIST TAIL]
+[------------MIN LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]
+[------------MAX LINE LARGER THAN LIST SIZE, RESET TO SIZE ---------------]
+[LIST HEAD]-[LIST SIZE: 19]
+(19) Lines 5, and 13 are empty lines.
+[LIST TAIL]

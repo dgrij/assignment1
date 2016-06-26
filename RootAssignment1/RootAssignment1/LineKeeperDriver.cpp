@@ -10,17 +10,21 @@ int main()
    
 	{
 	
-	LineKeeper lk ("originalterroristtext.txt");
+	LineKeeper lk ("text.txt");
 
 	
 
-	lk.print(5,-25);
+	lk.print(2);
 
-	lk.print(1,5);
+	lk.print(13,7);
 
-	lk.print(-23,-25);
+	lk.print(25,5);
 
-	lk.print(2,25);
+	lk.print(-25,5);
+
+	lk.print(-25,-85);
+
+	lk.print(25,50);
 
 	
 	}

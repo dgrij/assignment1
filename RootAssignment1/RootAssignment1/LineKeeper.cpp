@@ -28,6 +28,10 @@ LineKeeper::LineKeeper(const char* fileName) //: linePtr{ new char[1]{ '\0' } }
 	
 	
 
+
+
+
+
 }
 
 
